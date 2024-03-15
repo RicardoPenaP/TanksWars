@@ -1,9 +1,8 @@
 {
-    "name": "Testing",
-    "rootNamespace": "Testing",
+    "name": "Gameplay",
+    "rootNamespace": "Gameplay",
     "references": [
-        "GUID:1491147abca9d7d4bb7105af628b223e",
-        "GUID:6401b8a7d226b7c4080d06d07944e0c5"
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
