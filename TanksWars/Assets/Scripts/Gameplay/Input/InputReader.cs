@@ -25,12 +25,9 @@ namespace Gameplay.Input
         }
 
         public void OnMove(InputAction.CallbackContext context)
-        {
+        {            
             Vector2 rawInput = context.ReadValue<Vector2>();
-            if (rawInput != Vector2.zero)
-            {                
-                OnMoveInputUpdated?.Invoke(rawInput);
-            }
+            OnMoveInputUpdated?.Invoke(rawInput);            
         }
 
         public void OnPrimaryFire(InputAction.CallbackContext context)

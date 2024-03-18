@@ -17,7 +17,7 @@ namespace Networking.Client
         {
             CanCommitToTransform = IsOwner;
             base.Update();
-            if (NetworkManager != null)
+            if (NetworkManager != null && !IsHost)
             {
                 if (NetworkManager.IsConnectedClient || NetworkManager.IsListening)
                 {
