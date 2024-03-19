@@ -1,4 +1,5 @@
 using Gameplay.Input;
+using Gameplay.Player.Aiming;
 using Gameplay.Player.Movement;
 using System;
 using Unity.Netcode;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace Gameplay.Player
 {
-    public class PlayerController : NetworkBehaviour, IPlayerMovementController
+    public class PlayerController : NetworkBehaviour, IPlayerMovementInitializer, IPlayerAimingInitializer
     {
         [Header("Player Controller")]
 
@@ -21,20 +22,21 @@ namespace Gameplay.Player
         [Header("Movement References")]
         [SerializeField] private PlayerMovementSettings playerMovementSettings;        
         [SerializeField] private Rigidbody2D playerRigidbody2D;
-
-        //testing
-        [SerializeField] private Vector2 testInput;
-        
+               
 
         public event Action<Vector2> OnPlayerMovevementUpdated;
+        public event Action<Vector2> OnPlayerAimUpdated;
 
         private PlayerMovement playerMovement;
+        private PlayerAiming playerAiming;
 
         public PlayerMovementSettings PlayerMovementSettings => playerMovementSettings;
 
         public Transform BodyTransform => bodyTransform;
 
         public Rigidbody2D PlayerRigidbody2D => playerRigidbody2D;
+
+        public Transform TurretTransform => turretTransform;
 
         private Vector2 rawMovementInput;
 
@@ -46,6 +48,7 @@ namespace Gameplay.Player
             }
 
             playerMovement = new PlayerMovement(this);
+            playerAiming = new PlayerAiming(this);
             inputReader.OnMoveInputUpdated += InputReader_OnMoveInputUpdated;
         }
 
@@ -76,11 +79,18 @@ namespace Gameplay.Player
         private void UpdatePlayer()
         {
             UpdateMovement();
+            UpdateAiming();
         }
 
         private void UpdateMovement()
         {
             OnPlayerMovevementUpdated?.Invoke(rawMovementInput);
         }
+
+        private void UpdateAiming()
+        {
+            OnPlayerAimUpdated?.Invoke(inputReader.AimPosition);
+        }
+
     }
 }

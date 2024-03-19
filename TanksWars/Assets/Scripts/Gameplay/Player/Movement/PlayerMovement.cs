@@ -8,7 +8,7 @@ namespace Gameplay.Player.Movement
         private readonly Transform bodyTransform;
         private readonly Rigidbody2D playerRigidbody2D;
 
-        public PlayerMovement(IPlayerMovementController playerMovementController)
+        public PlayerMovement(IPlayerMovementInitializer playerMovementController)
         {
             playerMovementSettings = playerMovementController.PlayerMovementSettings;
             bodyTransform = playerMovementController.BodyTransform;

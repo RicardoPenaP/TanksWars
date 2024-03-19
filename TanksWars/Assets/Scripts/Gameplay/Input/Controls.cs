@@ -46,6 +46,15 @@ namespace Gameplay.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""8f344b8e-39cf-452f-9d3e-b4643543d732"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -114,6 +123,17 @@ namespace Gameplay.Input
                     ""action"": ""PrimaryFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e202e6b-c14e-4b27-849e-732da25e560b"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Muse"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -141,6 +161,7 @@ namespace Gameplay.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_PrimaryFire = m_Player.FindAction("PrimaryFire", throwIfNotFound: true);
+            m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -204,12 +225,14 @@ namespace Gameplay.Input
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_PrimaryFire;
+        private readonly InputAction m_Player_Aim;
         public struct PlayerActions
         {
             private @Controls m_Wrapper;
             public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @PrimaryFire => m_Wrapper.m_Player_PrimaryFire;
+            public InputAction @Aim => m_Wrapper.m_Player_Aim;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -225,6 +248,9 @@ namespace Gameplay.Input
                 @PrimaryFire.started += instance.OnPrimaryFire;
                 @PrimaryFire.performed += instance.OnPrimaryFire;
                 @PrimaryFire.canceled += instance.OnPrimaryFire;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -235,6 +261,9 @@ namespace Gameplay.Input
                 @PrimaryFire.started -= instance.OnPrimaryFire;
                 @PrimaryFire.performed -= instance.OnPrimaryFire;
                 @PrimaryFire.canceled -= instance.OnPrimaryFire;
+                @Aim.started -= instance.OnAim;
+                @Aim.performed -= instance.OnAim;
+                @Aim.canceled -= instance.OnAim;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -265,6 +294,7 @@ namespace Gameplay.Input
         {
             void OnMove(InputAction.CallbackContext context);
             void OnPrimaryFire(InputAction.CallbackContext context);
+            void OnAim(InputAction.CallbackContext context);
         }
     }
 }

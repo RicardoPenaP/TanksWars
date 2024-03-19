@@ -9,9 +9,11 @@ namespace Gameplay.Input
     public class InputReader : ScriptableObject, IPlayerActions
     {
         public event Action<Vector2> OnMoveInputUpdated;
-        public event Action<bool> OnFireInputUpdated;
+        public event Action<bool> OnFireInputUpdated;        
 
         private Controls controls;
+
+        public Vector2 AimPosition { get; private set; }
 
         private void OnEnable()
         {
@@ -33,6 +35,11 @@ namespace Gameplay.Input
         public void OnPrimaryFire(InputAction.CallbackContext context)
         {
             OnFireInputUpdated?.Invoke(context.ReadValueAsButton());
+        }
+
+        public void OnAim(InputAction.CallbackContext context)
+        {
+            AimPosition = context.ReadValue<Vector2>();
         }
     }
 }

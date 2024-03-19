@@ -1,10 +1,9 @@
-using Gameplay.Player.Movement;
 using System;
 using UnityEngine;
 
-namespace Gameplay.Player
+namespace Gameplay.Player.Movement
 {
-    public interface IPlayerMovementController
+    public interface IPlayerMovementInitializer
     {
         public event Action<Vector2> OnPlayerMovevementUpdated;
 
