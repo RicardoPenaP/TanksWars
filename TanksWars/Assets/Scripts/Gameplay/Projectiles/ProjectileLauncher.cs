@@ -1,3 +1,4 @@
+using Gameplay.Combat.Damage;
 using Gameplay.Input;
 using System;
 using System.Collections;
@@ -24,14 +25,17 @@ namespace Gameplay.Projectiles
         private bool canFire = true;
         private bool isFiring = false;
 
+        private void Awake()
+        {
+            timer = new Timer(1 / projectileLauncherSettings.FireRate, () => canFire = true, TimerMode.Decremental);
+        }
+
         public override void OnNetworkSpawn()
         {
             if (!IsOwner)
             {
                 return;
-            }
-
-            timer = new Timer(1 / projectileLauncherSettings.FireRate, () => canFire = true, TimerMode.Decremental);
+            }            
 
             inputReader.OnFireInputUpdated += InputReader_OnFireInputUpdated;
         }
@@ -103,6 +107,10 @@ namespace Gameplay.Projectiles
             GameObject instantiatedProjectile = Instantiate(prefab, shootingPositionTransform.position, shootingPositionTransform.rotation);
             Collider2D projectileCollider = instantiatedProjectile.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(playerCollider, projectileCollider);
+            if (instantiatedProjectile.TryGetComponent(out IDamageDealer damageDealer))
+            {
+                damageDealer.SetDamageOwnerId(OwnerClientId);
+            }
         }
     }
 }
