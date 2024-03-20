@@ -1,6 +1,7 @@
 using Gameplay.Input;
 using Gameplay.Player.Aiming;
 using Gameplay.Player.Movement;
+using Gameplay.Projectiles;
 using System;
 using Unity.Netcode;
 using UnityEngine;
@@ -18,17 +19,21 @@ namespace Gameplay.Player
         [Header("Tank Parts References")]
         [SerializeField] private Transform bodyTransform;
         [SerializeField] private Transform turretTransform;
+        [SerializeField] private Transform shootingPositionTransform;
 
         [Header("Movement References")]
         [SerializeField] private PlayerMovementSettings playerMovementSettings;        
         [SerializeField] private Rigidbody2D playerRigidbody2D;
+
+        [Header("Projectile References")]
+        [SerializeField] private ProjectileLauncherSettings projectileLauncherSettings;
                
 
         public event Action<Vector2> OnPlayerMovevementUpdated;
         public event Action<Vector2> OnPlayerAimUpdated;
 
         private PlayerMovement playerMovement;
-        private PlayerAiming playerAiming;
+        private PlayerAiming playerAiming;        
 
         public PlayerMovementSettings PlayerMovementSettings => playerMovementSettings;
 
@@ -38,7 +43,11 @@ namespace Gameplay.Player
 
         public Transform TurretTransform => turretTransform;
 
-        private Vector2 rawMovementInput;
+        public ProjectileLauncherSettings ProjectileLauncherSettings => projectileLauncherSettings;
+
+        public Transform ShootingPositionTransform => shootingPositionTransform;
+
+        private Vector2 rawMovementInput;        
 
         public override void OnNetworkSpawn()
         {
@@ -48,8 +57,9 @@ namespace Gameplay.Player
             }
 
             playerMovement = new PlayerMovement(this);
-            playerAiming = new PlayerAiming(this);
-            inputReader.OnMoveInputUpdated += InputReader_OnMoveInputUpdated;
+            playerAiming = new PlayerAiming(this);            
+
+            inputReader.OnMoveInputUpdated += InputReader_OnMoveInputUpdated;                          
         }
 
         private void Update()
@@ -68,7 +78,7 @@ namespace Gameplay.Player
                 return;
             }
 
-            inputReader.OnMoveInputUpdated -= InputReader_OnMoveInputUpdated;            
+            inputReader.OnMoveInputUpdated -= InputReader_OnMoveInputUpdated;
         }
 
         private void InputReader_OnMoveInputUpdated( Vector2 rawInput)
@@ -79,7 +89,7 @@ namespace Gameplay.Player
         private void UpdatePlayer()
         {
             UpdateMovement();
-            UpdateAiming();
+            UpdateAiming();            
         }
 
         private void UpdateMovement()
@@ -91,6 +101,6 @@ namespace Gameplay.Player
         {
             OnPlayerAimUpdated?.Invoke(inputReader.AimPosition);
         }
-
+     
     }
 }

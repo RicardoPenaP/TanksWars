@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fc01b7372517845be7bf7887e75557, type: 3}
   m_Name: PlayerMovementSettings
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 6
   turningSpeed: 270

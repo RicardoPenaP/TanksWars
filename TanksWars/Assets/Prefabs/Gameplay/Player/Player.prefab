@@ -34,6 +34,7 @@ Transform:
   - {fileID: 4186141374341351}
   - {fileID: 998438679081913872}
   - {fileID: 6481334443845305600}
+  - {fileID: 4860332306102087682}
   m_Father: {fileID: 1986056295452701333}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &9158840197919714987
@@ -440,6 +441,37 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!1 &3200496611251841638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4860332306102087682}
+  m_Layer: 0
+  m_Name: ShootingPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4860332306102087682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3200496611251841638}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.939, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7589096272600706566}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3636942408382027359
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +654,7 @@ GameObject:
   - component: {fileID: 6739783621370134611}
   - component: {fileID: 8527500423354596675}
   - component: {fileID: 2619466593056787155}
+  - component: {fileID: 1976222008367748160}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -782,9 +815,25 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: e988b6d98fbb3bc44b8f7dcbc8387770, type: 2}
   bodyTransform: {fileID: 8958719626095918175}
   turretTransform: {fileID: 7589096272600706566}
+  shootingPositionTransform: {fileID: 4860332306102087682}
   playerMovementSettings: {fileID: 11400000, guid: 1f8263ac2c47cae4ba18927b6b96f470, type: 2}
   playerRigidbody2D: {fileID: 6739783621370134611}
-  testInput: {x: 0, y: 0}
+  projectileLauncherSettings: {fileID: 11400000, guid: b1d130d38a1f40e41a46b99977feb4a4, type: 2}
+--- !u!114 &1976222008367748160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5634611781526710271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a063853feb75cc646bf48287b609544b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: e988b6d98fbb3bc44b8f7dcbc8387770, type: 2}
+  projectileLauncherSettings: {fileID: 11400000, guid: b1d130d38a1f40e41a46b99977feb4a4, type: 2}
+  shootingPositionTransform: {fileID: 4860332306102087682}
 --- !u!1 &7215236272094719736
 GameObject:
   m_ObjectHideFlags: 0
