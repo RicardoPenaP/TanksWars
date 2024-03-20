@@ -1,4 +1,5 @@
 using Gameplay.Input;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tools.TimeCounters;
@@ -14,6 +15,9 @@ namespace Gameplay.Projectiles
         [SerializeField] private InputReader inputReader;
         [SerializeField] private ProjectileLauncherSettings projectileLauncherSettings;
         [SerializeField] private Transform shootingPositionTransform;
+        [SerializeField] private Collider2D playerCollider;
+
+        public event Action OnProjectileSpawned;
 
         private Timer timer;
 
@@ -30,7 +34,7 @@ namespace Gameplay.Projectiles
             timer = new Timer(1 / projectileLauncherSettings.FireRate, () => canFire = true, TimerMode.Decremental);
 
             inputReader.OnFireInputUpdated += InputReader_OnFireInputUpdated;
-        }       
+        }
 
         private void Update()
         {
@@ -68,20 +72,19 @@ namespace Gameplay.Projectiles
             canFire = false;
             timer.StartTimer();
             SpawnProjectileServerRpc();
-            SpawnClientProjectile();            
+            SpawnClientProjectile();
         }
 
         private void SpawnClientProjectile()
         {
-            GameObject clientProjectile = Instantiate(projectileLauncherSettings.ClientProjectilePrefab,
-                                                    shootingPositionTransform.position, shootingPositionTransform.rotation);            
+            InstantiateProjectile(projectileLauncherSettings.ClientProjectilePrefab);
+            OnProjectileSpawned?.Invoke();
         }
 
         [ServerRpc]
         private void SpawnProjectileServerRpc()
         {
-            GameObject serverProjectile = Instantiate(projectileLauncherSettings.ServerProjectilePrefab,
-                                                    shootingPositionTransform.position, shootingPositionTransform.rotation);
+            InstantiateProjectile(projectileLauncherSettings.ServerProjectilePrefab);
             SpawnProjectileClientRpc();
         }
 
@@ -93,6 +96,13 @@ namespace Gameplay.Projectiles
                 return;
             }
             SpawnClientProjectile();
+        }
+
+        private void InstantiateProjectile(GameObject prefab)
+        {
+            GameObject instantiatedProjectile = Instantiate(prefab, shootingPositionTransform.position, shootingPositionTransform.rotation);
+            Collider2D projectileCollider = instantiatedProjectile.GetComponent<Collider2D>();
+            Physics2D.IgnoreCollision(playerCollider, projectileCollider);
         }
     }
 }

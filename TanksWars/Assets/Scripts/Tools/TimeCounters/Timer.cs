@@ -15,8 +15,9 @@ namespace Tools.TimeCounters
         private bool isTimerActive = false;
 
         private readonly float startingValue;
-        private readonly float objectiveValue;        
+        private readonly float objectiveValue;
 
+        public bool IsTimerActive => isTimerActive;
 
         public Timer(float duration, Action timerFinishedCallback, TimerMode timerMode = TimerMode.Default)
         {
@@ -79,6 +80,6 @@ namespace Tools.TimeCounters
         {
             timerFinishedCallback?.Invoke();
         }
-
+        
     }
 }
