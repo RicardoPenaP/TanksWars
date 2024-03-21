@@ -12,11 +12,7 @@ namespace Gameplay.Combat.Health
         [SerializeField] private HealthBar healthBar;
 
         public void UpdateHealthBar(float normalizedValue)
-        {
-            if (!IsClient)
-            {
-                return;
-            }
+        {            
             healthBar.UpdateFill(normalizedValue);
         }
 

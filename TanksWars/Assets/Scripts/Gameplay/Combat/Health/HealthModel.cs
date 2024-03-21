@@ -15,8 +15,8 @@ namespace Gameplay.Combat.Health
         public int MaxHealth => maxHealth;
         public bool IsDead => isDead;
 
-        //public HealthModel(int maxHealth)
-        //{            
+        //public HealthModel(int maxHealth) : base()
+        //{
         //    this.maxHealth = maxHealth;
         //    Value = this.maxHealth;
         //    isDead = false;

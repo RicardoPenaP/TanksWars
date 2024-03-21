@@ -20,14 +20,14 @@ namespace Gameplay.Combat.Health
         private HealthModel healthModel = new HealthModel();
 
         public override void OnNetworkSpawn()
-        {
+        {            
             ServerInitialization();
-            ClientInitialization();            
+            ClientInitialization();
         }
 
         private void HealthModel_OnValueChanged(int previousValue, int newValue)
         {
-            float normalizedHealthValue = (float)newValue / maxHealth;
+            float normalizedHealthValue = (float)newValue / healthModel.MaxHealth;
             healthView.UpdateHealthBar(normalizedHealthValue);
         }
 
