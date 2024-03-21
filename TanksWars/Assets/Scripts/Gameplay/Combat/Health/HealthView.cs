@@ -11,7 +11,14 @@ namespace Gameplay.Combat.Health
         [Header("References")]
         [SerializeField] private HealthBar healthBar;
 
-        public void UpdateHealthBar(float normalizedValue) => healthBar.UpdateFill(normalizedValue);
+        public void UpdateHealthBar(float normalizedValue)
+        {
+            if (!IsClient)
+            {
+                return;
+            }
+            healthBar.UpdateFill(normalizedValue);
+        }
 
     }
 }

@@ -21,28 +21,37 @@ namespace Gameplay.Combat.Health
 
         public override void OnNetworkSpawn()
         {
-            if (!IsServer)
-            {
-                return;
-            }
-
-            healthModel.SetMaxHealth(maxHealth);
-            healthModel.OnValueChanged += HealthModel_OnValueChanged;
-            healthModel.OnValueReachedZero += () => OnDie?.Invoke(this);
-            HealthModel_OnValueChanged(0, maxHealth);
-
+            ServerInitialization();
+            ClientInitialization();            
         }
 
         private void HealthModel_OnValueChanged(int previousValue, int newValue)
         {
-            if (IsClient)
-            {
-                float normalizedHealthValue = newValue / maxHealth;
-                healthView?.UpdateHealthBar(normalizedHealthValue);
-            }            
+            float normalizedHealthValue = (float)newValue / maxHealth;
+            healthView.UpdateHealthBar(normalizedHealthValue);
         }
 
-        public void TakeDamage(int value) => healthModel.TakeDamage(value);        
+        private void ServerInitialization()
+        {
+            if (!IsServer)
+            {
+                return;
+            }
+            healthModel.SetMaxHealth(maxHealth);
+            healthModel.OnValueReachedZero += () => OnDie?.Invoke(this);
+            HealthModel_OnValueChanged(0, maxHealth);
+        }
+
+        private void ClientInitialization()
+        {
+            if (!IsClient)
+            {
+                return;
+            }
+            healthModel.OnValueChanged += HealthModel_OnValueChanged;
+        }
+
+        public void TakeDamage(int value) => healthModel.TakeDamage(value);
 
         public void RestoreHealth(int value) => healthModel.RestoreHealth(value);
 
@@ -50,5 +59,6 @@ namespace Gameplay.Combat.Health
         {
             return OwnerClientId;
         }
+
     }
 }
