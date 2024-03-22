@@ -20,7 +20,8 @@ namespace Gameplay.Combat.Health
         private HealthModel healthModel = new HealthModel();
 
         public override void OnNetworkSpawn()
-        {            
+        {
+            healthModel.SetMaxHealth(maxHealth);
             ServerInitialization();
             ClientInitialization();
         }
@@ -36,8 +37,7 @@ namespace Gameplay.Combat.Health
             if (!IsServer)
             {
                 return;
-            }
-            healthModel.SetMaxHealth(maxHealth);
+            }            
             healthModel.OnValueReachedZero += () => OnDie?.Invoke(this);
             HealthModel_OnValueChanged(0, maxHealth);
         }
