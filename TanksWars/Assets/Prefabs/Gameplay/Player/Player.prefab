@@ -47,7 +47,7 @@ SortingGroup:
   m_GameObject: {fileID: 214469246614115207}
   m_Enabled: 1
   m_SortingLayerID: 2130612463
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 200
   m_SortAtRoot: 0
 --- !u!114 &8198358662981432392
@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 8175761324167237727}
   - component: {fileID: 6590776821304231541}
   - component: {fileID: 465390377872702243}
+  - component: {fileID: 2611088910299269321}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -484,7 +485,7 @@ SortingGroup:
   m_GameObject: {fileID: 1653362305770703738}
   m_Enabled: 1
   m_SortingLayerID: 2130612463
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 100
   m_SortAtRoot: 0
 --- !u!114 &6590776821304231541
@@ -562,6 +563,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2611088910299269321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653362305770703738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5361c9028d62ee5429afe1cc23d945f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3200496611251841638
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +789,7 @@ GameObject:
   - component: {fileID: 2619466593056787155}
   - component: {fileID: 1976222008367748160}
   - component: {fileID: 8058850455312991267}
+  - component: {fileID: 1007273785666240798}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -926,6 +940,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthView: {fileID: 7059484739135232684}
   maxHealth: 100
+--- !u!114 &1007273785666240798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5634611781526710271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ca404634487b94db401e936b0a2be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7215236272094719736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1079,7 @@ SortingGroup:
   m_GameObject: {fileID: 8258817926237166200}
   m_Enabled: 1
   m_SortingLayerID: 2130612463
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1001 &3065978454738576760

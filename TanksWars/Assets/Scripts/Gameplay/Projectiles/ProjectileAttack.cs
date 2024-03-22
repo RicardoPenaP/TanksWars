@@ -26,6 +26,10 @@ namespace Gameplay.Projectiles
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (!collision.attachedRigidbody)
+            {
+                return;
+            }
             if (collision.attachedRigidbody.TryGetComponent(out IDamageTaker damageTaker))
             {
                 if (ownerClientId == damageTaker.GetClientOwnerID())
