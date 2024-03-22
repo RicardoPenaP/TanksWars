@@ -27,6 +27,15 @@ namespace Gameplay.Collectables.Coins
 
         }
 
-        
+        public void ResetCoin()
+        {
+            alreadyCollected = false;
+            if (!IsClient)
+            {
+                return;
+            }
+            Show(true);
+        }
+
     }
 }

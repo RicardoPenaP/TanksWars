@@ -30,9 +30,18 @@ namespace Gameplay.Collectables.Coins.Spawner
 
         private void SpawnCoin()
         {
-            RespawningCoin coinInstance = Instantiate(coinSpawnerSettings.RespawningCoinPrefab, GetSpawnPoint(), Quaternion.identity);
+            RespawningCoin coinInstance = Instantiate(coinSpawnerSettings.RespawningCoinPrefab, GetSpawnPoint(),
+                                                        Quaternion.identity, transform);
             coinInstance.SetValue(coinSpawnerSettings.CoinValue);
             coinInstance.GetComponent<NetworkObject>().Spawn();
+
+            coinInstance.OnCollected += CoinInstance_OnCollected;
+        }
+
+        private void CoinInstance_OnCollected(RespawningCoin coin)
+        {
+            coin.transform.position = GetSpawnPoint();
+            coin.ResetCoin();
         }
 
         private Vector2 GetSpawnPoint()
