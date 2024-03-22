@@ -1,7 +1,11 @@
+using System;
+
 namespace Gameplay.Collectables.Coins
 {
     public class RespawningCoin : Coin
     {
+        public event Action<RespawningCoin> OnCollected;
+
         public override int Collect()
         {
             if (!IsServer)
@@ -17,7 +21,7 @@ namespace Gameplay.Collectables.Coins
             }
 
             alreadyCollected = true;
-
+            OnCollected?.Invoke(this);
 
             return value;
 

@@ -13,8 +13,6 @@ namespace Gameplay.Collectables.Coins.Spawner
         private Collider2D[] coinBuffer = new Collider2D[1];
         private float coinRadius;
 
-
-
         public override void OnNetworkSpawn()
         {
             if (!IsServer)
@@ -23,11 +21,18 @@ namespace Gameplay.Collectables.Coins.Spawner
             }
             coinRadius = coinSpawnerSettings.RespawningCoinPrefab.GetComponent<CircleCollider2D>().radius;
 
+            for (int i = 0; i < coinSpawnerSettings.MaxCoins; i++)
+            {
+                SpawnCoin();
+            }
+
         }
 
         private void SpawnCoin()
         {
-            Instantiate(coinSpawnerSettings.RespawningCoinPrefab);
+            RespawningCoin coinInstance = Instantiate(coinSpawnerSettings.RespawningCoinPrefab, GetSpawnPoint(), Quaternion.identity);
+            coinInstance.SetValue(coinSpawnerSettings.CoinValue);
+            coinInstance.GetComponent<NetworkObject>().Spawn();
         }
 
         private Vector2 GetSpawnPoint()
