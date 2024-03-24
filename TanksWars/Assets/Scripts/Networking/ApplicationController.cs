@@ -31,11 +31,16 @@ namespace Networking
                 //Host and Client server logic
                 ClientSingleton clientSingleton = Instantiate(clientSingletonPrefab);
 
-                await clientSingleton.CreateClientAsync();
+                bool authenticated = await clientSingleton.CreateClientAsync();
 
                 HostSingleton hostSingleton = Instantiate(hostSingletonPrefab);
 
                 hostSingleton.CreateHost();
+
+                if (authenticated)
+                {
+                    clientSingleton.GoToMainMenu();
+                }
             }
         }
     }

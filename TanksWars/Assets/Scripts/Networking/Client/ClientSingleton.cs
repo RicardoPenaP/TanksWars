@@ -1,3 +1,5 @@
+using SceneManagement;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -24,11 +26,16 @@ namespace Networking.Client
             }
         }
 
-        public async Task CreateClientAsync()
+        public async Task<bool> CreateClientAsync()
         {
             clientGameManager = new ClientGameManager();
 
-            await clientGameManager.InitAsync();
+            return await clientGameManager.InitAsync();
+        }
+
+        internal void GoToMainMenu()
+        {
+            clientGameManager.LoadGameScene(GameScenes.MainMenu);
         }
     }
 }
