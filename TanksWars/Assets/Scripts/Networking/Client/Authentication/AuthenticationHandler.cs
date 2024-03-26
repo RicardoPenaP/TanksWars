@@ -8,8 +8,9 @@ namespace Networking.Client.Authentication
 {
     public static class AuthenticationHandler
     {
-        private const int reauthenticationWaitTime = 1000;
-        private const int checkingAuthenticatingProccesWaitTime = 200;
+        private const int ReauthenticationWaitTime = 1000;
+        private const int CheckingAuthenticatingProccesWaitTime = 200;
+
         private static AuthenticationState authenticationState = NotAuthenticated;
 
         public static AuthenticationState AuthenticationState => authenticationState;
@@ -63,7 +64,7 @@ namespace Networking.Client.Authentication
 
                 tries++;
 
-                await Task.Delay(reauthenticationWaitTime);
+                await Task.Delay(ReauthenticationWaitTime);
             }
 
             if (authenticationState != Authenticated)
@@ -77,7 +78,7 @@ namespace Networking.Client.Authentication
         {
             while (authenticationState == Authenticating || authenticationState == NotAuthenticated)
             {
-                await Task.Delay(checkingAuthenticatingProccesWaitTime);
+                await Task.Delay(CheckingAuthenticatingProccesWaitTime);
             }
 
             return authenticationState;

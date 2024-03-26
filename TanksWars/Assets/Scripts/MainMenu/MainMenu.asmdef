@@ -1,7 +1,9 @@
 {
     "name": "MainMenu",
     "rootNamespace": "MainMenu",
-    "references": [],
+    "references": [
+        "GUID:743d8d4e95172c647b0e73a8d6538895"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

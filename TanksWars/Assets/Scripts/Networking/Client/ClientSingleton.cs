@@ -1,5 +1,4 @@
 using SceneManagement;
-using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -33,9 +32,10 @@ namespace Networking.Client
             return await clientGameManager.InitAsync();
         }
 
-        internal void GoToMainMenu()
+        public void GoToMainMenu()
         {
-            clientGameManager.LoadGameScene(GameScenes.MainMenu);
+            GameScenesManager.ChangeLocalScene(GameScenes.MainMenu);
         }
+
     }
 }

@@ -27,7 +27,8 @@ namespace Networking.Host
         public void CreateHost()
         {
             hostGameManager = new HostGameManager();
-
         }
+
+        public async Task StartHostAsync() => await hostGameManager.StartHostAsync();
     }
 }
