@@ -1,6 +1,5 @@
 using Networking.Client.Authentication;
 using SceneManagement;
-using System;
 using System.Threading.Tasks;
 using Unity.Services.Core;
 
