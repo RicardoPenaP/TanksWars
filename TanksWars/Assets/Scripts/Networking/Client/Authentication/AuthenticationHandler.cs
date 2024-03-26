@@ -50,14 +50,14 @@ namespace Networking.Client.Authentication
                         break;
                     }
                 }
-                catch (AuthenticationException exception)
+                catch (AuthenticationException authException)
                 {
-                    Debug.LogError(exception);
+                    Debug.LogError(authException);
                     authenticationState = Error;
                 }
-                catch (RequestFailedException exception)
+                catch (RequestFailedException requestException)
                 {
-                    Debug.LogError(exception);
+                    Debug.LogError(requestException);
                     authenticationState = Error;
                 }
 
