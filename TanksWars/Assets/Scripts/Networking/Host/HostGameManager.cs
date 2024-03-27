@@ -13,12 +13,12 @@ namespace Networking.Host
     public class HostGameManager
     {
         private const int MaxConnections = 20;
-        private string ConnectionType = "udp";
+        private const string ConnectionType = "dtls";
 
         private Allocation allocation;
         private string joinCode;
 
-        public async Task StartHostAsync()
+        internal async Task StartHostAsync()
         {
             try
             {

@@ -1,4 +1,5 @@
 using MainMenu.Views;
+using Networking.Client;
 using Networking.Host;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -13,17 +14,27 @@ namespace MainMenu.Controllers
         private void Start()
         {
             mainMenuView.OnHostButtonPressed += MainMenuView_OnHostButtonPressed;
-                
+            mainMenuView.OnClientButtonPressed += MainMenuView_OnClientButtonPressed;
         }
 
-        private async void MainMenuView_OnHostButtonPressed()
+        private void OnDestroy()
         {
-            await StarHost();
+            mainMenuView.OnHostButtonPressed -= MainMenuView_OnHostButtonPressed;
+            mainMenuView.OnClientButtonPressed -= MainMenuView_OnClientButtonPressed;
         }
 
-        private async Task StarHost()
+        private void MainMenuView_OnHostButtonPressed()
         {
-            await HostSingleton.Instance.StartHostAsync();
+            StarHost();
         }
+
+        private void MainMenuView_OnClientButtonPressed(string joinCodeText)
+        {
+            StartClient(joinCodeText);
+        }
+
+        private async void StarHost() => await HostSingleton.Instance.StartHostAsync();
+
+        private async void StartClient(string joinCodeText) => await ClientSingleton.Instance.StarClientAsync(joinCodeText);
     }
 }

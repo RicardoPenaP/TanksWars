@@ -1,4 +1,5 @@
 using SceneManagement;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -36,6 +37,8 @@ namespace Networking.Client
         {
             GameScenesManager.ChangeLocalScene(GameScenes.MainMenu);
         }
+
+        public async Task StarClientAsync(string joinCodeText) => await clientGameManager.StartClientAsync(joinCodeText);
 
     }
 }

@@ -1192,6 +1192,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1680903784}
+  - {fileID: 1759602776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &899516273
@@ -1468,6 +1469,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostButton: {fileID: 247189807}
+  clientButton: {fileID: 280066510}
+  joinCodeInputField: {fileID: 677458577}
 --- !u!1 &1759602774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1506,12 +1509,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759602774}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 761008379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1870785964
 GameObject:
@@ -1886,4 +1889,3 @@ SceneRoots:
   - {fileID: 1870785965}
   - {fileID: 1874178161}
   - {fileID: 761008379}
-  - {fileID: 1759602776}
