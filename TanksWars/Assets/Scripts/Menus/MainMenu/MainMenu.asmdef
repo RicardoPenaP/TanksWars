@@ -3,7 +3,8 @@
     "rootNamespace": "MainMenu",
     "references": [
         "GUID:743d8d4e95172c647b0e73a8d6538895",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:b801f6fca727d064b8428e98d37b9f9b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
